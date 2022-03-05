@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/utils/screen_helper.dart';
 
@@ -91,7 +90,7 @@ class _ExperienceState extends State<Experience> {
     return Row(
       children: [
         Container(
-          margin: new EdgeInsetsDirectional.only(start: 1.0, end: 1.0),
+          margin: const EdgeInsetsDirectional.only(start: 1.0, end: 1.0),
           height: 5.0,
           color: Colors.black,
         ),
@@ -109,8 +108,43 @@ class _ExperienceState extends State<Experience> {
     );
   }
 
+  List<Widget> _buildDescriptionList(List description) {
+    return description
+        .map((e) => Container(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 15,
+                    height: 15,
+                    child: Image.asset('assets/dot.png'),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    constraints:
+                        const BoxConstraints(minWidth: 200, maxWidth: 500),
+                    child: Text(
+                      e,
+                      maxLines: 4,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ))
+        .toList();
+  }
+
   Widget _buildTabBar(List<ExperienceEntry> entries) {
-    return Container(
+    return SizedBox(
       width: 218,
       child: NavigationRail(
         backgroundColor: Colors.transparent,
@@ -123,6 +157,7 @@ class _ExperienceState extends State<Experience> {
         labelType: NavigationRailLabelType.selected,
         destinations: entries
             .map((entry) => NavigationRailDestination(
+                  padding: EdgeInsets.zero,
                   icon: _buildTabBarItem(entry.company),
                   selectedIcon: _buildTabBarItem(entry.company),
                   label: Container(),
@@ -135,7 +170,7 @@ class _ExperienceState extends State<Experience> {
   Widget _buildTabView(List<ExperienceEntry> entries) {
     final entry = entries.elementAt(_selectedIndex);
     return Container(
-      constraints: BoxConstraints(minWidth: 200, maxWidth: 750),
+      constraints: const BoxConstraints(minWidth: 200, maxWidth: 750),
       padding: const EdgeInsets.only(top: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -159,38 +194,12 @@ class _ExperienceState extends State<Experience> {
           const SizedBox(
             height: 18,
           ),
-          ...entry.description
-              .map((e) => Container(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: 15,
-                          height: 15,
-                          child: Image.asset('assets/dot.png'),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Container(
-                          constraints:
-                              BoxConstraints(minWidth: 200, maxWidth: 500),
-                          child: Text(
-                            e,
-                            maxLines: 4,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ))
-              .toList(),
+          // SizedBox(
+          //   height: 400,
+          //   child: ListView(
+          //     children: _buildDescriptionList(entry.description),
+          //   ),
+          // ),
         ],
       ),
     );
@@ -200,7 +209,7 @@ class _ExperienceState extends State<Experience> {
     return Container(
       constraints: const BoxConstraints(
         minHeight: 200,
-        maxHeight: 400,
+        maxHeight: 500,
       ),
       // margin: const EdgeInsets.symmetric(horizontal: 50),
       child: Row(
@@ -215,7 +224,7 @@ class _ExperienceState extends State<Experience> {
   Widget _buildMobileTab(List<ExperienceEntry> entries) {
     final entry = entries.elementAt(_selectedIndex);
     return Container(
-      constraints: BoxConstraints(minWidth: 200, maxWidth: 750),
+      constraints: const BoxConstraints(minWidth: 200, maxWidth: 750),
       padding: const EdgeInsets.only(top: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -255,7 +264,7 @@ class _ExperienceState extends State<Experience> {
                         ),
                         Container(
                           constraints:
-                              BoxConstraints(minWidth: 200, maxWidth: 300),
+                              const BoxConstraints(minWidth: 200, maxWidth: 300),
                           child: Text(
                             e,
                             maxLines: 4,
@@ -281,7 +290,7 @@ class _ExperienceState extends State<Experience> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
+          SizedBox(
             width: 218,
             child: NavigationRail(
               backgroundColor: Colors.transparent,

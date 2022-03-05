@@ -32,8 +32,8 @@ class Footer extends StatelessWidget {
                           textAlign: TextAlign.center),
                     ],
                   ),
-                  onTap: () => launch(
-                      'https://github.com/javib51/flutter-portfolio'),
+                  onTap: () =>
+                      launch('https://github.com/javib51/flutter-portfolio'),
                 ),
                 padding: const EdgeInsets.all(10.0),
                 backgroundColor: Colors.transparent,

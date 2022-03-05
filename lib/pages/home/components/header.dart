@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:hexagon/hexagon.dart';
 import 'package:portfolio/utils/constants.dart';
@@ -100,7 +102,7 @@ class HeaderList extends StatelessWidget {
                     color: kDangerColor,
                     borderRadius: BorderRadius.circular(8.0),
                   ),
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 28.0,
                   ),
                   child: TextButton(
@@ -179,7 +181,7 @@ class Header extends StatelessWidget {
             // Lets make a scaffold key and create a drawer
             GestureDetector(
               onTap: () {
-                print("Open the menu");
+                log("Open the menu");
                 // Lets open drawer using global key
                 Globals.scaffoldKey.currentState?.openEndDrawer();
               },
